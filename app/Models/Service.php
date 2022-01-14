@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Service extends Model
 {
@@ -18,4 +19,9 @@ class Service extends Model
         'diagnosis',
         'comments'
     ];
+    public function patient(): HasOne
+    {
+        return $this->hasOne(Patient::class);
+    }
+
 }

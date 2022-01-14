@@ -61,7 +61,7 @@ class PatientController extends Controller
     {
         $patient = Patient::where('id',$id)->get();
         if(count($patient) < 1){
-            return response()::json(["message"=>"Unable to find Patient"],400);
+            return response()::json(["message"=>"Unable to find Patient"],404);
         }
         return response()::json($patient,200);
     }
@@ -98,7 +98,7 @@ class PatientController extends Controller
         try{
             $findTargetPatient = Patient::where('id',$id)->get();
             if(count($findTargetPatient) < 1){
-                return response()::json(["message"=>"pateient NOT Found!"],200);
+                return response()::json(["message"=>"pateient NOT Found!"],404);
             }
             $targetPatient = Patient::where('id',$id)->delete();
         }catch(\Illuminate\Database\QueryException $ex){

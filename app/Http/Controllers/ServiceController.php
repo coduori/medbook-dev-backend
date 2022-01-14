@@ -55,7 +55,7 @@ class ServiceController extends Controller
     {
         $service = Service::where('id',$id)->get();
         if(count($service) < 1){
-            return response()::json(["message"=>"Unable to find Service"],400);
+            return response()::json(["message"=>"Unable to find Service"],404);
         }
         return response()::json($service,200);
     }
@@ -89,7 +89,7 @@ class ServiceController extends Controller
         try{
             $findTargetService = Service::where('id',$id)->get();
             if(count($findTargetService) < 1){
-                return response()::json(["message"=>"Service NOT Found!"],200);
+                return response()::json(["message"=>"Service NOT Found!"],404);
             }
             $targetService = Service::where('id',$id)->delete();
         }catch(\Illuminate\Database\QueryException $ex){
